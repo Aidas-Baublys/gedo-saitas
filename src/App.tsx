@@ -1,16 +1,11 @@
-import { Button, Container, Typography } from '@mui/material';
+import Hero from './hero/hero';
+import Nav from './nav/nav';
 
 function App() {
   return (
     <section>
-      <Container>
-        <Typography variant='h4' gutterBottom>
-          Hello, MUI!
-        </Typography>
-        <Button variant='contained' color='primary'>
-          Click me
-        </Button>
-      </Container>
+      <Nav />
+      <Hero />
     </section>
   );
 }
