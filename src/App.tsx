@@ -1,3 +1,4 @@
+import Book from './book/book';
 import Hero from './hero/hero';
 import Nav from './nav/nav';
 
@@ -6,6 +7,7 @@ function App() {
     <section>
       <Nav />
       <Hero />
+      <Book />
     </section>
   );
 }
