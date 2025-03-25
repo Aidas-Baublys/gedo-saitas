@@ -5,6 +5,7 @@
   height: 80vh;
   display: flex;
   align-items: center;
+  margin-top: 64px;
 }
 
 .overlay {
