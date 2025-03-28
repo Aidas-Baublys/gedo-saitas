@@ -14,6 +14,7 @@ function App() {
       <Book />
       <About />
       <Massage />
+      <Contacts />
     </section>
   );
 }

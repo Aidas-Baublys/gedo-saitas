@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Button, Grid2 } from '@mui/material';
+import { Box, Container, Typography, Button } from '@mui/material';
 import tadasImg from '../assets/tadas-about.jpg';
 
 import styles from './about.module.css';
@@ -7,8 +7,8 @@ function About() {
   return (
     <Box sx={{ py: 10, backgroundColor: '#f9f9f9' }}>
       <Container>
-        <Grid2 container spacing={6} alignItems='center'>
-          <Grid2 size={6} className={styles.aboutText}>
+        <section className={styles.container}>
+          <div className={styles.aboutText}>
             <Typography variant='h3' gutterBottom>
               About Me
             </Typography>
@@ -23,9 +23,9 @@ function About() {
             <Button variant='contained' size='large'>
               Learn More
             </Button>
-          </Grid2>
+          </div>
 
-          <Grid2 size={6} className={styles.aboutImage}>
+          <div className={styles.aboutImage}>
             <Box
               component='img'
               src={tadasImg}
@@ -37,8 +37,8 @@ function About() {
                 boxShadow: 3,
               }}
             />
-          </Grid2>
-        </Grid2>
+          </div>
+        </section>
       </Container>
     </Box>
   );
