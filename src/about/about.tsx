@@ -1,4 +1,4 @@
-import { Box, Container, Typography, Button } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import tadasImg from '../assets/tadas-about.jpg';
 
 import styles from './about.module.css';
@@ -20,9 +20,6 @@ function About() {
               Our mission is to help you relax, recharge, and feel your best with professional, high-quality massage
               services in a calm, welcoming environment.
             </Typography>
-            <Button variant='contained' size='large'>
-              Learn More
-            </Button>
           </div>
 
           <div className={styles.aboutImage}>
