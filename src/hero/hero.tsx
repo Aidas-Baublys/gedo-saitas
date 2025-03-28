@@ -1,21 +1,24 @@
 import { Box, Button, Container, Typography } from '@mui/material';
 import { scrollToSectionById } from '../helpers';
+import { useLang } from '../langContext/langContext';
 
 import styles from './hero.module.css';
 
 const Hero = () => {
+  const { t } = useLang();
+
   return (
     <Box className={styles.heroWrapper}>
       <div className={styles.overlay}>
         <Container>
           <Typography variant='h2' color='white' gutterBottom>
-            It's time to treat yourself 😎
+            {t('heroTitle')}
           </Typography>
           <Typography variant='h5' color='white' paragraph>
-            Book a relaxing massage now:
+            {t('heroSubtitle')}
           </Typography>
           <Button variant='contained' color='secondary' size='large' onClick={() => scrollToSectionById('book', 15)}>
-            Find Times
+            {t('findTimes')}
           </Button>
         </Container>
       </div>

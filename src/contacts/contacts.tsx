@@ -12,10 +12,10 @@ const Contacts = () => {
         </Button>
         <Button
           color='inherit'
-          href='https://www.google.com/maps?q=Super+g.+69,+Vilnius'
+          href='https://www.google.com/maps?q=Konstitucijos+pr.+12,+Vilnius,+09309'
           target='_blank'
           rel='noopener noreferrer'>
-          Super g. 69, Vilnius
+          Konstitucijos pr. 12, Vilnius
         </Button>
       </Box>
     </Toolbar>

@@ -1,7 +1,10 @@
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, MenuItem, Select, Toolbar, Typography } from '@mui/material';
 import { scrollToSectionById } from '../helpers';
+import { Lang, useLang } from '../langContext/langContext';
 
 const Nav = () => {
+  const { lang, setLang, t } = useLang();
+
   return (
     <AppBar
       id='nav'
@@ -16,14 +19,29 @@ const Nav = () => {
         </Typography>
         <Box display='flex' gap={2}>
           <Button color='inherit' onClick={() => scrollToSectionById('app')}>
-            Home
+            {t('home')}
           </Button>
           <Button color='inherit' onClick={() => scrollToSectionById('about')}>
-            About
+            {t('about')}
           </Button>
           <Button color='inherit' onClick={() => scrollToSectionById('book', 15)}>
-            Book
+            {t('book')}
           </Button>
+          <Select
+            value={lang}
+            onChange={e => setLang(e.target.value as Lang)}
+            variant='outlined'
+            size='small'
+            sx={{
+              color: 'white',
+              borderColor: 'white',
+              '.MuiOutlinedInput-notchedOutline': { borderColor: 'white' },
+              '&:hover .MuiOutlinedInput-notchedOutline': { borderColor: 'white' },
+              '.MuiSvgIcon-root': { color: 'white' },
+            }}>
+            <MenuItem value={Lang.EN}>EN</MenuItem>
+            <MenuItem value={Lang.LT}>LT</MenuItem>
+          </Select>
         </Box>
       </Toolbar>
     </AppBar>
