@@ -1,5 +1,5 @@
 .heroWrapper {
-  background-image: url('src/assets/massage-hero.jpeg');
+  background-image: url('../assets/massage-hero.jpeg');
   background-size: cover;
   background-position: center;
   height: 80vh;

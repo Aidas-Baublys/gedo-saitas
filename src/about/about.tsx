@@ -1,4 +1,5 @@
 import { Box, Container, Typography, Button, Grid2 } from '@mui/material';
+import tadasImg from '../assets/tadas-about.jpg';
 
 import styles from './about.module.css';
 
@@ -27,7 +28,7 @@ function About() {
           <Grid2 size={6} className={styles.aboutImage}>
             <Box
               component='img'
-              src='src\assets\tadas-about.jpg'
+              src={tadasImg}
               alt='img of Tadas Karalaitis'
               sx={{
                 width: '50%',

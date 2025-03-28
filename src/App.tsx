@@ -2,6 +2,7 @@ import About from './about/about';
 import Book from './book/book';
 import Contacts from './contacts/contacts';
 import Hero from './hero/hero';
+import Massage from './massage/massage';
 import Nav from './nav/nav';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Contacts />
       <Book />
       <About />
+      <Massage />
     </section>
   );
 }
