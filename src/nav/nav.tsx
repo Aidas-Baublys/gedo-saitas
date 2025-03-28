@@ -4,7 +4,12 @@ const Nav = () => {
   // TODO: When the spa is done, add scroll to section functionality for clicking on the nav buttons
 
   return (
-    <AppBar position='fixed'>
+    <AppBar
+      position='fixed'
+      sx={{
+        opacity: 0.9,
+        backdropFilter: 'blur(8px)',
+      }}>
       <Toolbar>
         <Typography variant='h6' sx={{ flexGrow: 1 }}>
           Tadas Karalaitis
