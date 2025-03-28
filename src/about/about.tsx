@@ -1,11 +1,13 @@
 import { Box, Container, Typography, Button, Grid2 } from '@mui/material';
 
+import styles from './about.module.css';
+
 function About() {
   return (
     <Box sx={{ py: 10, backgroundColor: '#f9f9f9' }}>
       <Container>
         <Grid2 container spacing={6} alignItems='center'>
-          <Grid2 size={6}>
+          <Grid2 size={6} className={styles.aboutText}>
             <Typography variant='h3' gutterBottom>
               About Me
             </Typography>
@@ -22,13 +24,14 @@ function About() {
             </Button>
           </Grid2>
 
-          <Grid2 size={6}>
+          <Grid2 size={6} className={styles.aboutImage}>
             <Box
               component='img'
               src='src\assets\tadas-about.jpg'
               alt='img of Tadas Karalaitis'
               sx={{
                 width: '50%',
+                minWidth: 200,
                 borderRadius: 4,
                 boxShadow: 3,
               }}
