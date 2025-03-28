@@ -7,7 +7,7 @@ import Nav from './nav/nav';
 
 function App() {
   return (
-    <section>
+    <section id='app'>
       <Nav />
       <Hero />
       <Contacts />

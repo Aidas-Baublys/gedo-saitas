@@ -5,7 +5,7 @@ import styles from './about.module.css';
 
 function About() {
   return (
-    <Box sx={{ py: 10, backgroundColor: '#f9f9f9' }}>
+    <Box id='about' sx={{ py: 10, backgroundColor: '#f9f9f9' }}>
       <Container>
         <section className={styles.container}>
           <div className={styles.aboutText}>

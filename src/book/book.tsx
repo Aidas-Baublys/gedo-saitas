@@ -40,7 +40,7 @@ export default function BookingCalendar() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <Container sx={{ mt: 5 }}>
+      <Container id='book' sx={{ mt: 5 }}>
         <Typography variant='h4' gutterBottom>
           Book a Massage
         </Typography>
