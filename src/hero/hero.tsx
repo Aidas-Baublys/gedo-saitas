@@ -15,7 +15,7 @@ const Hero = () => {
             Book a relaxing massage now:
           </Typography>
           <Button variant='contained' color='secondary' size='large' onClick={() => scrollToSectionById('book', 15)}>
-            Get Started
+            Find Times
           </Button>
         </Container>
       </div>
