@@ -8,7 +8,7 @@ import { Lang, useLang } from '../langContext/langContext';
 import { enUS, lt } from 'date-fns/locale';
 
 const CLIENT_ID = '256298249777-jp9h31rs37o445lf8ddoscnr6mm98g7v.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyD5SoW-zqHRE9vgAhl3SlK0cDCh26_EHps';
+const API_KEY = 'asdasd';
 const CALENDAR_ID = 'primary';
 const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
 
