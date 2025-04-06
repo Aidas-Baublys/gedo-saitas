@@ -14,7 +14,7 @@ function App() {
         <Nav />
         <Hero />
         <Contacts />
-        <Book />
+        {/* <Book /> */}
         <About />
         <Massage />
         <Contacts />
