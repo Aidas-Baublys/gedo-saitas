@@ -35,7 +35,10 @@ function BookingCalendar() {
     try {
       const res = await fetch('https://lzabzcfisclwbudlphlb.supabase.co/functions/v1/submitBooking', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer 0bdf6332e485fbbbc4c35868311c51a26c0da5049ffcbcf38a5721519e3594d4',
+        },
         body: JSON.stringify(payload),
       });
 
