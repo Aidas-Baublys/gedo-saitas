@@ -37,7 +37,8 @@ function BookingCalendar() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer 0bdf6332e485fbbbc4c35868311c51a26c0da5049ffcbcf38a5721519e3594d4',
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx6YWJ6Y2Zpc2Nsd2J1ZGxwaGxiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM5MzI3MTAsImV4cCI6MjA1OTUwODcxMH0.5FXgD2NfTpxXA5PKNeDlW3-gTTBfvMJ_1FJssJiESU4',
         },
         body: JSON.stringify(payload),
       });
