@@ -1,120 +1,58 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { LocalizationProvider, StaticDatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3';
 import { Box, Container, Typography, Button, Grid2, TextField } from '@mui/material';
-import { addDays, format } from 'date-fns';
-import { gapi } from 'gapi-script';
-import { Lang, useLang } from '../langContext/langContext';
+import { addDays } from 'date-fns';
+import { useLang } from '../langContext/langContext';
 import { enUS, lt } from 'date-fns/locale';
+import Turnstile from 'react-turnstile';
 
-const CLIENT_ID = '256298249777-jp9h31rs37o445lf8ddoscnr6mm98g7v.apps.googleusercontent.com';
-const API_KEY = 'asdasd';
-const CALENDAR_ID = 'primary';
-const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
+const SITE_KEY = '0x4AAAAAABEh7PeL0jeD85vO';
 
 function BookingCalendar() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string>('');
-  const [availableTimes, setAvailableTimes] = useState<string[]>([]);
   const [email, setEmail] = useState<string>('');
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const { t, lang } = useLang();
 
-  useEffect(() => {
-    const initClient = () => {
-      gapi.load('client:auth2', () => {
-        gapi.client.init({
-          apiKey: API_KEY,
-          clientId: CLIENT_ID,
-          discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
-          scope: SCOPES,
-        });
-      });
-    };
-    initClient();
-  }, []);
-
-  const fetchAvailableTimes = async (date: Date) => {
-    const dateStr = format(date, 'yyyy-MM-dd');
-    const startOfDay = new Date(dateStr + 'T00:00:00Z').toISOString();
-    console.log('🚀 ~ fetchAvailableTimes ~ startOfDay:', startOfDay);
-    const endOfDay = new Date(dateStr + 'T23:59:59Z').toISOString();
-    console.log('🚀 ~ fetchAvailableTimes ~ endOfDay:', endOfDay);
-
-    try {
-      const response = await gapi.client.calendar.events.list({
-        calendarId: CALENDAR_ID,
-        // timeMin: startOfDay,
-        // timeMax: endOfDay,
-        singleEvents: true,
-        orderBy: 'startTime',
-      });
-
-      console.log('🚀 ~ fetchAvailableTimes ~ response:', response);
-
-      const events = response.result.items || [];
-      console.log('🚀 ~ fetchAvailableTimes ~ events:', events);
-      // @ts-ignore
-      const bookedTimes = events.map(event => {
-        const startTime = event.start?.dateTime || event.start?.date;
-        return format(new Date(startTime), 'HH:mm');
-      });
-
-      const allTimes = ['10:00', '11:00', '12:00', '13:00', '14:00'];
-      const freeTimes = allTimes.filter(time => !bookedTimes.includes(time));
-      setAvailableTimes(freeTimes);
-    } catch (error) {
-      console.error('Error fetching events:', error);
-    }
-  };
-
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date);
-    setSelectedTime('');
-    if (date) {
-      console.log('asdasd');
-
-      fetchAvailableTimes(date);
-    } else {
-      setAvailableTimes([]);
-    }
-  };
+  const availableTimes = ['10:00', '11:00', '12:00', '13:00', '14:00'];
+  const locale = lang === 'lt' ? lt : enUS;
 
   const handleBooking = async () => {
-    if (selectedDate && selectedTime && email) {
-      const dateStr = format(selectedDate, 'yyyy-MM-dd');
-      const startTime = new Date(`${dateStr}T${selectedTime}:00`);
-      const endTime = new Date(startTime.getTime() + 60 * 60 * 1000); // 1-hour duration
+    if (!selectedDate || !selectedTime || !email || !captchaToken) {
+      alert('Please complete all fields and CAPTCHA!');
+      return;
+    }
 
-      try {
-        // Create a calendar event
-        await gapi.client.calendar.events.insert({
-          calendarId: CALENDAR_ID,
-          resource: {
-            summary: 'Massage Appointment',
-            description: 'Your massage appointment.',
-            start: {
-              dateTime: startTime.toISOString(),
-              timeZone: 'Europe/Vilnius', // Replace with your time zone
-            },
-            end: {
-              dateTime: endTime.toISOString(),
-              timeZone: 'Europe/Vilnius',
-            },
-            attendees: [{ email }], // Invite the user
-          },
-        });
+    const payload = {
+      date: selectedDate.toISOString().split('T')[0],
+      time: selectedTime,
+      email,
+      turnstile_token: captchaToken,
+    };
 
-        alert();
-      } catch (error) {
-        console.error('Error creating event:', error);
-        alert('Failed to book the appointment. Please try again.');
+    try {
+      const res = await fetch('https://your-project.functions.supabase.co/submitBooking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        alert(`Booking confirmed for ${payload.date} at ${payload.time}. Confirmation sent to ${email}.`);
+        setSelectedDate(null);
+        setSelectedTime('');
+        setEmail('');
+        setCaptchaToken(null);
+      } else {
+        const error = await res.json();
+        alert(`Error: ${error.message || 'Something went wrong.'}`);
       }
-    } else {
-      alert('Please select a date, time, and provide your email!');
+    } catch (err) {
+      alert('Network error. Please try again later.');
     }
   };
-
-  const locale = lang === Lang.LT ? lt : enUS;
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={locale}>
@@ -126,7 +64,7 @@ function BookingCalendar() {
           <StaticDatePicker
             displayStaticWrapperAs='desktop'
             value={selectedDate}
-            onChange={handleDateChange}
+            onChange={setSelectedDate}
             minDate={new Date()}
             maxDate={addDays(new Date(), 30)}
           />
@@ -136,21 +74,18 @@ function BookingCalendar() {
               {t('selectTimes')}
             </Typography>
             <Grid2 container spacing={2}>
-              {availableTimes.length > 0 ? (
-                availableTimes.map(time => (
-                  <Grid2 key={time}>
-                    <Button
-                      fullWidth
-                      variant={selectedTime === time ? 'contained' : 'outlined'}
-                      onClick={() => setSelectedTime(time)}>
-                      {time}
-                    </Button>
-                  </Grid2>
-                ))
-              ) : (
-                <Typography>{t('noTimes')}</Typography>
-              )}
+              {availableTimes.map(time => (
+                <Grid2 key={time}>
+                  <Button
+                    fullWidth
+                    variant={selectedTime === time ? 'contained' : 'outlined'}
+                    onClick={() => setSelectedTime(time)}>
+                    {time}
+                  </Button>
+                </Grid2>
+              ))}
             </Grid2>
+
             <TextField
               label='Email'
               type='email'
@@ -159,11 +94,21 @@ function BookingCalendar() {
               onChange={e => setEmail(e.target.value)}
               sx={{ mt: 3 }}
             />
+
+            {/* Turnstile CAPTCHA */}
+            <Box sx={{ mt: 3 }}>
+              <Turnstile
+                sitekey={SITE_KEY}
+                onSuccess={token => setCaptchaToken(token)}
+                onExpire={() => setCaptchaToken(null)}
+              />
+            </Box>
+
             <Button
               variant='contained'
               color='primary'
               sx={{ mt: 3 }}
-              disabled={!selectedDate || !selectedTime || !email}
+              disabled={!selectedDate || !selectedTime || !email || !captchaToken}
               onClick={handleBooking}>
               {t('confirmBooking')}
             </Button>
