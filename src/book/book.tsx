@@ -26,7 +26,7 @@ function BookingCalendar() {
     }
 
     const payload = {
-      date: selectedDate.toISOString().split('T')[0],
+      date: selectedDate.toLocaleDateString().split('T')[0],
       time: selectedTime,
       email,
       turnstile_token: captchaToken,
