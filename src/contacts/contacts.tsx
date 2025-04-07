@@ -2,20 +2,38 @@ import { Box, Button, Toolbar } from '@mui/material';
 
 const Contacts = () => {
   return (
-    <Toolbar>
-      <Box display='flex' gap={2} sx={{ width: '100%', justifyContent: 'space-around', alignItems: 'center' }}>
+    <Toolbar
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: '#f5f5f5',
+        padding: 2,
+      }}>
+      <Box
+        display='flex'
+        gap={2}
+        sx={{
+          width: '100%',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          flexDirection: {
+            xs: 'column',
+            sm: 'row',
+          },
+        }}>
         <Button color='inherit' href='tel:+37066666666'>
-          +370 666 66 666
+          +370 682 50474
         </Button>
         <Button color='inherit' href='mailto:tadas@masazai.lt'>
-          tadas@masazai.lt
+          t.karalaitis@gmail.com
         </Button>
         <Button
           color='inherit'
-          href='https://www.google.com/maps?q=Konstitucijos+pr.+12,+Vilnius,+09309'
+          href='https://www.google.com/maps?q=1322+SE+1st+Ave,+Fort+Lauderdale,+33316'
           target='_blank'
           rel='noopener noreferrer'>
-          Konstitucijos pr. 12, Vilnius
+          1322 SE 1st Ave, Fort Lauderdale, 33316
         </Button>
       </Box>
     </Toolbar>

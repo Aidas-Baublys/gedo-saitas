@@ -13,12 +13,10 @@ function About() {
               About Me
             </Typography>
             <Typography variant='body1' paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae purus nec leo volutpat egestas.
-              In ac urna vel neque ullamcorper gravida. Nulla facilisi.
-            </Typography>
-            <Typography variant='body1' paragraph>
-              Our mission is to help you relax, recharge, and feel your best with professional, high-quality massage
-              services in a calm, welcoming environment.
+              Three years ago, while still working an office job, I discovered my true passion: massage therapy. What
+              began as a simple side hustle quickly grew into a calling. After completing a professional course in
+              classic body massage in Vilnius, Lithuania, I turned my passion into a full-time career. My techniques are
+              rooted in classic relaxing massage, making me the perfect choice if relaxation is what you seek.
             </Typography>
           </div>
 

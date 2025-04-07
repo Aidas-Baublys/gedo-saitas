@@ -1,9 +1,9 @@
 const Map = () => {
-  const address = 'Konstitucijos pr. 12, Vilnius, 09309';
+  const address = '1322 SE 1st Ave, Fort Lauderdale, 33316';
   const encodedAddress = encodeURIComponent(address);
 
   return (
-    <div style={{ width: '100%', height: '400px', marginTop: '20px' }}>
+    <div style={{ width: '100%', height: '400px' }}>
       <iframe
         title='Google Map'
         width='100%'

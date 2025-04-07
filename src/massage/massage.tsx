@@ -1,12 +1,6 @@
 import { Box, Typography, Card, CardContent } from '@mui/material';
 
 const Massage = () => {
-  const massages = [
-    { name: 'Swedish Massage', description: 'A relaxing full-body massage.', price: '$50/hour' },
-    { name: 'Deep Tissue Massage', description: 'Targets deeper layers of muscles.', price: '$70/hour' },
-    { name: 'Hot Stone Massage', description: 'Uses heated stones for relaxation.', price: '$80/hour' },
-  ];
-
   return (
     <Box
       sx={{
@@ -20,27 +14,42 @@ const Massage = () => {
           sm: 'row',
         },
       }}>
-      {massages.map((massage, index) => (
-        <Card
-          key={index}
-          sx={{
-            flex: '1 1 calc(33.33% - 16px)',
-            minWidth: 100,
-            boxShadow: 3,
-          }}>
-          <CardContent>
-            <Typography variant='h6' gutterBottom>
-              {massage.name}
-            </Typography>
-            <Typography variant='body2' paragraph>
-              {massage.description}
-            </Typography>
-            <Typography variant='subtitle1' color='text.secondary'>
-              {massage.price}
-            </Typography>
-          </CardContent>
-        </Card>
-      ))}
+      <Card
+        sx={{
+          flex: '1 1 calc(33.33% - 16px)',
+          minWidth: 100,
+          boxShadow: 3,
+        }}>
+        <CardContent>
+          <Typography variant='h6' gutterBottom>
+            1 hour - $100
+          </Typography>
+        </CardContent>
+      </Card>
+      <Card
+        sx={{
+          flex: '1 1 calc(33.33% - 16px)',
+          minWidth: 100,
+          boxShadow: 3,
+        }}>
+        <CardContent>
+          <Typography variant='h6' gutterBottom>
+            1.5 hour - $150
+          </Typography>
+        </CardContent>
+      </Card>
+      <Card
+        sx={{
+          flex: '1 1 calc(33.33% - 16px)',
+          minWidth: 100,
+          boxShadow: 3,
+        }}>
+        <CardContent>
+          <Typography variant='h6' gutterBottom>
+            2 hour - $200
+          </Typography>
+        </CardContent>
+      </Card>
     </Box>
   );
 };
