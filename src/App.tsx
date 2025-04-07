@@ -1,5 +1,4 @@
 import About from './about/about';
-import Book from './book/book';
 import Contacts from './contacts/contacts';
 import Hero from './hero/hero';
 import { LangProvider } from './langContext/langContext';
@@ -14,7 +13,6 @@ function App() {
         <Nav />
         <Hero />
         <Contacts />
-        {/* <Book /> */}
         <About />
         <Massage />
         <Contacts />
