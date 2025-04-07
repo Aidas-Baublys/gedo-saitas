@@ -1,9 +1,9 @@
-import { AppBar, Box, Button, MenuItem, Select, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, MenuItem, Select, Toolbar, Typography } from '@mui/material';
 import { scrollToSectionById } from '../helpers';
 import { Lang, useLang } from '../langContext/langContext';
 
 const Nav = () => {
-  const { lang, setLang, t } = useLang();
+  const { lang, setLang } = useLang();
 
   return (
     <AppBar
@@ -12,21 +12,13 @@ const Nav = () => {
       sx={{
         opacity: 0.9,
         backdropFilter: 'blur(8px)',
+        height: 64,
       }}>
       <Toolbar>
         <Typography variant='h6' sx={{ flexGrow: 1 }} onClick={() => scrollToSectionById('app')}>
           Tadas Karalaitis
         </Typography>
         <Box display='flex' gap={2}>
-          <Button color='inherit' onClick={() => scrollToSectionById('app')}>
-            {t('home')}
-          </Button>
-          <Button color='inherit' onClick={() => scrollToSectionById('about')}>
-            {t('about')}
-          </Button>
-          <Button color='inherit' onClick={() => scrollToSectionById('book', 15)}>
-            {t('book')}
-          </Button>
           <Select
             value={lang}
             onChange={e => setLang(e.target.value as Lang)}

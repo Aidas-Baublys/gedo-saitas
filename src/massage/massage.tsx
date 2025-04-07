@@ -15,6 +15,10 @@ const Massage = () => {
         gap: 2,
         padding: 4,
         flexWrap: 'wrap',
+        flexDirection: {
+          xs: 'column',
+          sm: 'row',
+        },
       }}>
       {massages.map((massage, index) => (
         <Card

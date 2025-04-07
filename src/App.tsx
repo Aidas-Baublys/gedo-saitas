@@ -13,8 +13,8 @@ function App() {
         <Nav />
         <Hero />
         <Contacts />
-        <About />
         <Massage />
+        <About />
         <Contacts />
         <Map />
       </section>
